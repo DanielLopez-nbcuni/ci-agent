@@ -165,7 +165,7 @@ build_env ()
 	  export GIT_REPO_NAME="${GITHUB_REPOSITORY##*/}"
 	  export GIT_REPO_URL="git@github.com:$GIT_REPO_OWNER/$GIT_REPO_NAME.git"
 	  export GIT_BRANCH_NAME="$GITHUB_HEAD_REF"
-	  export GIT_COMMIT_HASH="$GITHUB_SHA"
+	  export GIT_COMMIT_HASH="$COMMIT_SHA"
 
 	  if [[ "$GITHUB_SERVER_URL" == *"github.com"* ]]; then
 	    export GIT_REPO_SERVICE="github"
