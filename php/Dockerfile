@@ -1,4 +1,4 @@
-FROM docksal/ci-agent:base-build
+FROM dlopeznbc/ci-agent:base
 
 # Switch to root to install some system-wide stuff
 USER root
