@@ -33,7 +33,7 @@ if [[ "${REMOTE_BUILD_DIR_CLEANUP}" == "1" ]] ||
 	[[ "${REMOTE_CODEBASE_METHOD}" == "rsync" ]] ||
 	([[ "${REMOTE_CODEBASE_METHOD}" == "git" ]] && [[ $remote_git_check_result != 0 ]]) ||
 	([[ "${REMOTE_CODEBASE_METHOD}" == "git" ]] && [[ $remote_build_dir_exists_check_result != 0 ]]); then
-	echo "Cleanup is re-initializing the remote environment..."
+	echo "Cleanup on ${REMOTE_BUILD_DIR} is re-initializing the remote environment..."
 	ssh docker-host "(cd ${REMOTE_BUILD_DIR} 2>/dev/null && fin rm -f 2>/dev/null) || true"
 	ssh docker-host "sudo rm -rf ${REMOTE_BUILD_DIR} 2>/dev/null; mkdir -p ${REMOTE_BUILD_DIR}"
 else
@@ -51,6 +51,7 @@ if [[ "${REMOTE_CODEBASE_METHOD}" == "rsync" ]]; then
 else
 	# Checkout sources on the remote host
 	echo "Checking out codebase via git..."
+	echo "Attempting to clone from repo '${GIT_REPO_URL}' with branch '${GIT_BRANCH_NAME}'.."
 	if [[ $remote_git_check_result == 0 ]] && [[ "${REMOTE_BUILD_DIR_CLEANUP}" == "0" ]]; then
 		# Remote directory is confirmed to be a git repository and we are
 		# preserving the build, so we can safely fetch and reset.
