@@ -206,9 +206,11 @@ build_env ()
 	# Defaults for the sandbox user and builds directory: "build-agent" and "/home/build-agent/builds" respectively.
 	export DOCKSAL_HOST_USER="${DOCKSAL_HOST_USER:-build-agent}"
 	export REMOTE_BUILD_BASE=${REMOTE_BUILD_BASE:-/home/${DOCKSAL_HOST_USER}/builds}
-	export REMOTE_BUILD_DIR="${REMOTE_BUILD_BASE}/$REPO_NAME_SAFE-$BRANCH_NAME_SAFE"
-	export COMPOSE_PROJECT_NAME="$REPO_NAME_SAFE-$BRANCH_NAME_SAFE"
-	export DOCKER_STACK_NAME="$REPO_NAME_SAFE-$BRANCH_NAME_SAFE"
+	export REMOTE_BUILD_DIR="${REMOTE_BUILD_BASE}/$REPO_NAME_SAFE-pr-$GIT_PR_NUMBER"
+	export COMPOSE_PROJECT_NAME="$REPO_NAME_SAFE-pr-$GIT_PR_NUMBER"
+	export DOCKER_STACK_NAME="$REPO_NAME_SAFE-pr-$GIT_PR_NUMBER"
+	# export COMPOSE_PROJECT_NAME="$REPO_NAME_SAFE-$BRANCH_NAME_SAFE"
+	# export DOCKER_STACK_NAME="$REPO_NAME_SAFE-$BRANCH_NAME_SAFE"
 
 	# Use DOCKSAL_HOST (domain name) if set, otherwise use DOCKSAL_HOST_IP (IP) with nip.io
 	export DOCKSAL_HOST="${DOCKSAL_HOST:-$DOCKSAL_HOST_IP.nip.io}"
@@ -233,7 +235,8 @@ build_env ()
 		# Note: A wildcard cert for "*.example.com", will only cover "sub-domain.example.dom", but not
 		# "www.sub-domain.example.com".
 		# NOTE: The length of any one label (sub-domain) in the domain name is limited to 63 octets (characters).
-		export SANDBOX_DOMAIN="${BRANCH_NAME_SAFE}--${REPO_NAME_SAFE}.${DOCKSAL_DOMAIN}"
+		# export SANDBOX_DOMAIN="${BRANCH_NAME_SAFE}--${REPO_NAME_SAFE}.${DOCKSAL_DOMAIN}"
+		export SANDBOX_DOMAIN="pr-${GIT_PR_NUMBER}.${DOCKSAL_DOMAIN}"
 	fi
 	# Backward compatibility with ci-agent versions prior to 1.6.1.
 	# This variable may be used in custom Slack notifications.
