@@ -206,9 +206,9 @@ build_env ()
 	# Defaults for the sandbox user and builds directory: "build-agent" and "/home/build-agent/builds" respectively.
 	export DOCKSAL_HOST_USER="${DOCKSAL_HOST_USER:-build-agent}"
 	export REMOTE_BUILD_BASE=${REMOTE_BUILD_BASE:-/home/${DOCKSAL_HOST_USER}/builds}
-	export REMOTE_BUILD_DIR="${REMOTE_BUILD_BASE}/$REPO_NAME_SAFE-pr-$GIT_PR_NUMBER"
-	export COMPOSE_PROJECT_NAME="$REPO_NAME_SAFE-pr-$GIT_PR_NUMBER"
-	export DOCKER_STACK_NAME="$REPO_NAME_SAFE-pr-$GIT_PR_NUMBER"
+	export REMOTE_BUILD_DIR="${REMOTE_BUILD_BASE}/${REPO_NAME_SAFE}_pr_${GIT_PR_NUMBER}"
+	export COMPOSE_PROJECT_NAME="${REPO_NAME_SAFE}_pr_${GIT_PR_NUMBER}"
+	export DOCKER_STACK_NAME="${REPO_NAME_SAFE}_pr_${GIT_PR_NUMBER}"
 	# export COMPOSE_PROJECT_NAME="$REPO_NAME_SAFE-$BRANCH_NAME_SAFE"
 	# export DOCKER_STACK_NAME="$REPO_NAME_SAFE-$BRANCH_NAME_SAFE"
 
