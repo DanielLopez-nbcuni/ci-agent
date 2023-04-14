@@ -64,6 +64,7 @@ fi
 
 # Configure sandbox settings
 echo "Configuring sandbox settings..."
+echo_debug "PR url will be ${SANDBOX_DOMAIN} on environment ${BUILD_ENVIRONMENT}"
 build-exec "fin config set COMPOSE_PROJECT_NAME=${COMPOSE_PROJECT_NAME} --env=${BUILD_ENVIRONMENT}"
 build-exec "fin config set VIRTUAL_HOST=${SANDBOX_DOMAIN} --env=${BUILD_ENVIRONMENT}"
 
