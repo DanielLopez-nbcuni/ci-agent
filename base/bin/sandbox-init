@@ -7,6 +7,5 @@ build-init; ret=$?
 [[ ${ret} == 0 ]] && build-notify pending || { build-notify failure; exit ${ret}; }
 
 echo "Initializing sandbox via 'fin init'..."
-build-exec "fin sync fix"
 build-exec "fin init"; ret=$?
 [[ ${ret} == 0 ]] && build-notify success || { build-notify failure; exit ${ret}; }
