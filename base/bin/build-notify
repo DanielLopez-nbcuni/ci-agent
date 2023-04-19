@@ -7,10 +7,10 @@
 
 DEBUG=${DEBUG:-0}  # `DEBUG=1 build-notify` to run with debugging turned ON
 
-export CONTEXT="ci/docksal"  # Context for notifications
+export CONTEXT="Multiverse CI / notification"  # Context for notifications
 export URL="https://${SANDBOX_DOMAIN}"  # Sandbox URL
-export STATUS_API=${STATUS_API:-1}  # Status API notifications enabled by default
-export PR_COMMENT=${PR_COMMENT:-0}  # PR comment notifications disabled by default
+export STATUS_API=${STATUS_API:-0}  # Status API notifications enabled by default
+export PR_COMMENT=${PR_COMMENT:-1}  # PR comment notifications disabled by default
 
 #-------------------------- FUNCTIONS ----------------------------
 
@@ -87,9 +87,9 @@ bitbucket_status_api ()
 # @param $1 - comment
 github_pr_comment ()
 {
-	[[ "${GIT_REPO_SERVICE}" != "github" ]] && return
-	[[ "${GIT_PR_NUMBER}" == "" ]] && return
-	[[ "${GITHUB_TOKEN}" == "" ]] && echo "Set GITHUB_TOKEN to enable build status notifications" && return
+	[[ "${GIT_REPO_SERVICE}" == "github" ]] && return
+	[[ "${GIT_PR_NUMBER}" != "" ]] && return
+	[[ "${GITHUB_TOKEN}" != "" ]] && echo "Set GITHUB_TOKEN to enable build status notifications" && return
 
 	local comment="$1"
 
