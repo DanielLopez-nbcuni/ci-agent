@@ -103,13 +103,13 @@ if secrets=$(compgen -v | grep '^SECRET_'); then
 	done <<< "${secrets}"
 fi
 
-if [[ "${PHASE2_AWS_KEY}" != "" ]] && [[ "${PHASE2_AWS_SECRET}" != "" ]] && [[ "${PHASE2_AWS_BUCKET}" != "" ]]; then
+if [[ "${SECRET_PHASE2_AWS_KEY}" != "" ]] && [[ "${SECRET_PHASE2_AWS_SECRET}" != "" ]] && [[ "${SECRET_PHASE2_AWS_BUCKET}" != "" ]]; then
 	echo "Creating Phase2 .aws file..."
 	cat <<EOF >>$REMOTE_BUILD_DIR/.aws  
-AWS_ACCESS_KEY_ID=$PHASE2_AWS_KEY
-AWS_SECRET_ACCESS_KEY=$PHASE2_AWS_SECRET
+AWS_ACCESS_KEY_ID=$SECRET_PHASE2_AWS_KEY
+AWS_SECRET_ACCESS_KEY=$SECRET_PHASE2_AWS_SECRET
 AWS_DEFAULT_REGION=us-east-1
-AWS_BUCKET=$PHASE2_AWS_BUCKET
+AWS_BUCKET=$SECRET_PHASE2_AWS_BUCKET
 EOF
 fi
 

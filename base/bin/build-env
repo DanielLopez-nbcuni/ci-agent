@@ -13,6 +13,9 @@
 (return 0 2>/dev/null) || (echo "This script must be sourced! (source build-env)"; exit 1)
 
 # -------------------- Constants -------------------- #
+SECRET_PHASE2_AWS_KEY=${SECRET_PHASE2_AWS_KEY:-}
+SECRET_PHASE2_AWS_SECRET=${SECRET_PHASE2_AWS_SECRET:-}
+SECRET_PHASE2_AWS_BUCKET=${SECRET_PHASE2_AWS_BUCKET:-}
 
 DEBUG=${DEBUG:-0}  # `DEBUG=1 build-env` to run with debugging turned ON
 DOCKER_HOST_TUNNEL=localhost:2374
