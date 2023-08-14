@@ -112,4 +112,12 @@ if [[ "${SECRET_PHASE2_AWS_KEY}" != "" ]] && [[ "${SECRET_PHASE2_AWS_SECRET}" !=
 	build-exec "echo AWS_BUCKET=${SECRET_PHASE2_AWS_BUCKET} >> .aws" 
 fi
 
+if [[ "${SECRET_CLOUDINARY_SDK_API_KEY}" != "" ]] && [[ "${SECRET_CLOUDINARY_SDK_API_SECRET}" != "" ]] && [[ "${SECRET_CLOUDINARY_SDK_CLOUD_NAME}" != "" ]] && [[ "${SECRET_CLOUDINARY_URL}" != "" ]]; then
+	echo "Adding Cloudinary credentials to .env file"
+	build-exec "echo CLOUDINARY_SDK_API_KEY=${SECRET_CLOUDINARY_SDK_API_KEY} >> .env"
+	build-exec "echo CLOUDINARY_SDK_API_SECRET=${SECRET_CLOUDINARY_SDK_API_SECRET} >> .env"
+	build-exec "echo CLOUDINARY_SDK_CLOUD_NAME=${SECRET_CLOUDINARY_SDK_CLOUD_NAME} >> .env"
+	build-exec "echo CLOUDINARY_URL=${SECRET_CLOUDINARY_URL} >> .env"
+fi
+
 set +e
